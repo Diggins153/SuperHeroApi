@@ -1,8 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using SuperHeroApi.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
+
+//old
+//builder.Services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("DataContext"));
+
+//new
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -2,13 +2,13 @@
 
 namespace SuperHeroApi.Models
 {
-    public class SuperHero
+    public class Villain
     {
         [Key]
         public int id { get; set; }
 
         [MaxLength(100)]
-        public string HeroName { get; set; } = string.Empty;
+        public string VillainName { get; set; } = string.Empty;
 
         [MaxLength(100)]
         public string FirstName { get; set; } = string.Empty;
@@ -27,9 +27,9 @@ namespace SuperHeroApi.Models
 
         public int Health { get; set; }
 
-        public double Speed { get; set; } 
+        public double Speed { get; set; }
 
-        public int Strength { get; set; } 
+        public int Strength { get; set; }
 
         [MaxLength(50)]
         public string Role { get; set; } = string.Empty;
