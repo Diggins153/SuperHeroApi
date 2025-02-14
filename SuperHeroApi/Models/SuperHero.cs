@@ -5,33 +5,32 @@ namespace SuperHeroApi.Models
     public class SuperHero
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        [MaxLength(100)]
-        public string HeroName { get; set; } = string.Empty;
+        [Required]
+        [StringLength(100)]
+        public string HeroName { get; set; }
 
-        [MaxLength(100)]
-        public string FirstName { get; set; } = string.Empty;
+        [StringLength(100)]
+        public string FirstName { get; set; }
 
-        [MaxLength(100)]
-        public string LastName { get; set; } = string.Empty;
+        [StringLength(100)]
+        public string LastName { get; set; }
 
-        [MaxLength(100)]
-        public string Place { get; set; } = string.Empty;
+        [StringLength(100)]
+        public string Place { get; set; }
 
-        [MaxLength(500)]
-        public string Description { get; set; } = string.Empty;
+        public string Description { get; set; }
 
-        [MaxLength(100)]
-        public string Abilities { get; set; } = string.Empty;
+        public int? Health { get; set; }
 
-        public int Health { get; set; }
+        public float? Speed { get; set; }
 
-        public double Speed { get; set; } 
+        public int? Strength { get; set; }
 
-        public int Strength { get; set; } 
+        [StringLength(50)]
+        public string Role { get; set; }
 
-        [MaxLength(50)]
-        public string Role { get; set; } = string.Empty;
+        public ICollection<Ability> Abilities { get; set; }
     }
 }

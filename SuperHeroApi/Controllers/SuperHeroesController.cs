@@ -23,16 +23,16 @@ namespace SuperHeroApi.Controllers
 
         // GET: api/SuperHeroes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SuperHero>>> GetSuperHeros()
+        public async Task<ActionResult<IEnumerable<SuperHero>>> GetSuperHeroes()
         {
-            return await _context.SuperHeros.ToListAsync();
+            return await _context.SuperHeroes.ToListAsync();
         }
 
         // GET: api/SuperHeroes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<SuperHero>> GetSuperHero(int id)
         {
-            var superHero = await _context.SuperHeros.FindAsync(id);
+            var superHero = await _context.SuperHeroes.FindAsync(id);
 
             if (superHero == null)
             {
@@ -47,7 +47,7 @@ namespace SuperHeroApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSuperHero(int id, SuperHero superHero)
         {
-            if (id != superHero.id)
+            if (id != superHero.Id)
             {
                 return BadRequest();
             }
@@ -78,23 +78,23 @@ namespace SuperHeroApi.Controllers
         [HttpPost]
         public async Task<ActionResult<SuperHero>> PostSuperHero(SuperHero superHero)
         {
-            _context.SuperHeros.Add(superHero);
+            _context.SuperHeroes.Add(superHero);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetSuperHero", new { id = superHero.id }, superHero);
+            return CreatedAtAction("GetSuperHero", new { id = superHero.Id }, superHero);
         }
 
         // DELETE: api/SuperHeroes/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSuperHero(int id)
         {
-            var superHero = await _context.SuperHeros.FindAsync(id);
+            var superHero = await _context.SuperHeroes.FindAsync(id);
             if (superHero == null)
             {
                 return NotFound();
             }
 
-            _context.SuperHeros.Remove(superHero);
+            _context.SuperHeroes.Remove(superHero);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +102,7 @@ namespace SuperHeroApi.Controllers
 
         private bool SuperHeroExists(int id)
         {
-            return _context.SuperHeros.Any(e => e.id == id);
+            return _context.SuperHeroes.Any(e => e.Id == id);
         }
     }
 }

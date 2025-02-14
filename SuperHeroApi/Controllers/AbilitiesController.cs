@@ -12,47 +12,47 @@ namespace SuperHeroApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VillainsController : ControllerBase
+    public class AbilitiesController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public VillainsController(DataContext context)
+        public AbilitiesController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: api/Villains
+        // GET: api/Abilities
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Villain>>> GetVillain()
+        public async Task<ActionResult<IEnumerable<Ability>>> GetAbilities()
         {
-            return await _context.Villain.ToListAsync();
+            return await _context.Abilities.ToListAsync();
         }
 
-        // GET: api/Villains/5
+        // GET: api/Abilities/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Villain>> GetVillain(int id)
+        public async Task<ActionResult<Ability>> GetAbility(int id)
         {
-            var villain = await _context.Villain.FindAsync(id);
+            var ability = await _context.Abilities.FindAsync(id);
 
-            if (villain == null)
+            if (ability == null)
             {
                 return NotFound();
             }
 
-            return villain;
+            return ability;
         }
 
-        // PUT: api/Villains/5
+        // PUT: api/Abilities/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutVillain(int id, Villain villain)
+        public async Task<IActionResult> PutAbility(int id, Ability ability)
         {
-            if (id != villain.id)
+            if (id != ability.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(villain).State = EntityState.Modified;
+            _context.Entry(ability).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace SuperHeroApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!VillainExists(id))
+                if (!AbilityExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace SuperHeroApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Villains
+        // POST: api/Abilities
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Villain>> PostVillain(Villain villain)
+        public async Task<ActionResult<Ability>> PostAbility(Ability ability)
         {
-            _context.Villain.Add(villain);
+            _context.Abilities.Add(ability);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetVillain", new { id = villain.id }, villain);
+            return CreatedAtAction("GetAbility", new { id = ability.Id }, ability);
         }
 
-        // DELETE: api/Villains/5
+        // DELETE: api/Abilities/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteVillain(int id)
+        public async Task<IActionResult> DeleteAbility(int id)
         {
-            var villain = await _context.Villain.FindAsync(id);
-            if (villain == null)
+            var ability = await _context.Abilities.FindAsync(id);
+            if (ability == null)
             {
                 return NotFound();
             }
 
-            _context.Villain.Remove(villain);
+            _context.Abilities.Remove(ability);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool VillainExists(int id)
+        private bool AbilityExists(int id)
         {
-            return _context.Villain.Any(e => e.id == id);
+            return _context.Abilities.Any(e => e.Id == id);
         }
     }
 }

@@ -3,6 +3,8 @@ using SuperHeroApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = "server=bvsoihq2zoccp2fsqs1h-mysql.services.clever-cloud.com;database=bvsoihq2zoccp2fsqs1h;user=ubqit6veicdjliuo;password=ih7eaOAH3O54Sl53p1Wu";
+var serverVersion = new MySqlServerVersion(new Version(8,0,30));
 // Add services to the container.
 builder.Services.AddControllers();
 
@@ -10,8 +12,9 @@ builder.Services.AddControllers();
 //builder.Services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("DataContext"));
 
 //new
-builder.Services.AddDbContext<DataContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<DataContext>(opt =>
+    opt.UseMySql(connectionString, serverVersion));
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
